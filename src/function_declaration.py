@@ -11,13 +11,16 @@ DB_PARAMS = {
     'port': 5432
 }
 
+import os
+project_dir = os.path.abspath(os.path.dirname(__file__))
+
 # PL/Python 函数声明 SQL
-CREATE_FUNCTION_SQL = """
+CREATE_FUNCTION_SQL = f"""
 CREATE OR REPLACE FUNCTION py_add(a integer, b integer)
 RETURNS integer
 AS $$
 import sys
-sys.path.append('D:\pythonDL')  # Python 文件所在目录
+sys.path.append(r'{project_dir}')  # Python 文件所在目录
 
 from python_function_definition import add
 
