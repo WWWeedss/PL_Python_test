@@ -1,4 +1,4 @@
-# python_dl
+# PL/Python
 测试自定义 sql 函数
 
 python 版本：3.11.13
