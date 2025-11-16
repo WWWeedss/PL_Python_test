@@ -12,7 +12,8 @@ DB_PARAMS = {
 }
 
 import os
-project_dir = os.path.abspath(os.path.dirname(__file__))
+# 获取当前文件所在目录的绝对路径
+project_dir = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'ai_parse')
 
 # PL/Python 函数声明 SQL
 CREATE_FUNCTION_SQL = f"""
