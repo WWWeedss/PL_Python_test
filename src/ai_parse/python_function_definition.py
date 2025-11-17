@@ -24,9 +24,24 @@ def parse_document(path: str, options: dict) -> str:
         if use_ai_correction:
             file_dict["content"] = nlp_cleanup(file_dict["content"])
 
+        result_dict["metadata"] = file_dict["metadata"]
+        result_dict["content"] = file_dict["content"]
     except Exception as e:
         result_dict["errorInformation"] = str(e)
 
     return to_json_str(result_dict)
 
 
+if __name__ == "__main__":
+    test_path = "https://plpython.oss-cn-beijing.aliyuncs.com/test.pdf"
+    options = {
+        "use_ai_correction": True
+    }
+    result = parse_document(test_path, options)
+    print(result)
+
+    options = {
+        "use_ai_correction": False
+    }
+    result = parse_document(test_path, options)
+    print(result)
