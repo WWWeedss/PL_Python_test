@@ -1,10 +1,12 @@
+import os
+
 from src.ai_parse.ai_api.post_ocr_nlp import nlp_cleanup
 from src.ai_parse.get_file import get_file
 from src.ai_parse.parsers.file_parser import parse_file
 from src.ai_parse.utils.common_utils import to_json_str
 
 
-def parse_document(path: str, options: dict) -> str:
+def parse_document(path: str, options: dict, apikey: str) -> str:
     result_dict = {
         "content":"",
         "metadata":{},
@@ -22,7 +24,7 @@ def parse_document(path: str, options: dict) -> str:
 
         # 如果开启 AI 清洗
         if use_ai_correction:
-            file_dict["content"] = nlp_cleanup(file_dict["content"])
+            file_dict["content"] = nlp_cleanup(file_dict["content"], apikey)
 
         result_dict["metadata"] = file_dict["metadata"]
         result_dict["content"] = file_dict["content"]
@@ -37,11 +39,12 @@ if __name__ == "__main__":
     options = {
         "use_ai_correction": True
     }
-    result = parse_document(test_path, options)
+    apikey = os.getenv("ZHIPUAI_API_KEY")
+    result = parse_document(test_path, options, apikey)
     print(result)
 
     options = {
         "use_ai_correction": False
     }
-    result = parse_document(test_path, options)
+    result = parse_document(test_path, options, apikey)
     print(result)

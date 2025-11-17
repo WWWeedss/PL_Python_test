@@ -3,6 +3,11 @@ def to_json_str(data: dict) -> str:
     import json
     return json.dumps(data, ensure_ascii=False)
 
+def str_to_dict(json_str: str) -> dict:
+    """Convert a JSON string to a dictionary."""
+    import json
+    return json.loads(json_str)
+
 def get_file_extension(filename: str) -> str:
     """Get the file extension from a filename."""
     import os
