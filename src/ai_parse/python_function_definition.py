@@ -36,7 +36,7 @@ def parse_document(path: str, options: dict, apikey: str) -> str:
 
 
 if __name__ == "__main__":
-    test_path = "https://plpython.oss-cn-beijing.aliyuncs.com/test.pdf"
+    test_path = "https://test-ai-parser.obs.cn-north-4.myhuaweicloud.com:443/shakespeare.pdf?AccessKeyId=HSTAMDX4VSDQ8L5P924N&Expires=1763514516&x-obs-security-token=hQpjbi1zb3V0aC0xAQAABDRIU1RBTURYNFZTRFE4TDVQOTI0TsO3bV8Wsihnf4SPqua7iJTecy1CxOj4-y1I6-FivGJ9kcQ8KjrwhprIEiz-5RZ_-IiyExmGtpJKQA2-Pah9n3ltkh0G8ymbyOaU4eciU9Fhqbrl-OPwwhaGXBGIN9Lo-XJRLKABq-AiJEV8xIvAHHX0myjgXBRaVQhvTFhqFd0RIVTZU6oVT_CAaPpysDULpPrggbYXTIu1wiSTDRCNo1HtqS_rP5C2f25GcWnLNsqQCmet1xrOTvoVIWrYe2oJKeFvJx5VsbHJ17pdS0bkuog7uSNzts1_hlaNUafre__rmq4ADPXRJmUnkC4xH-HA7iqnlpEj1E9wW-t854zmHwehgKeeN4iTGGlxP3NB33LMP232X4jmVqNGjoxaZw_xYQPEavXa3OT9SxWgt_JKlqm0CgbJUdOk8cEc4GdU3C4fW0lNBe_TsXMlDQFP4x1ckTKyrcZp4kzb2tYGDiGtm3nYv8SYZnFwKSeuGDIc4jh1uq0UeZw604-mNbEmFvMU4zUuKZbt2PClt8muMkl6F8C1XyUrlnm3YLMTSBUU5cHQUTLtUoaAlxA28xQVP68fmWJpzkwmWe6ydJsWINQV3p6yx-Y%3D&Signature=5d0qGsOwXEWf%2B2nGBVqsSL9u27Q%3D"
     options = {
         "use_ai_correction": True
     }

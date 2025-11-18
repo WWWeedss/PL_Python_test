@@ -8,13 +8,18 @@ def str_to_dict(json_str: str) -> dict:
     import json
     return json.loads(json_str)
 
-def get_file_extension(filename: str) -> str:
-    """Get the file extension from a filename."""
+def get_file_extension(url: str) -> str:
+    """Extract file extension from a URL, ignoring query and fragment."""
+    from urllib.parse import urlparse
     import os
-    _, ext = os.path.splitext(filename)
-    # Remove the leading dot and convert to lower case
-    ext = ext[1:].lower()
-    return ext
+
+    # Parse the URL and extract the path component
+    parsed = urlparse(url)
+    path = parsed.path  # e.g., '/documents/report.pdf'
+
+    # Extract extension from the path
+    _, ext = os.path.splitext(path)
+    return ext[1:].lower()  # Remove leading dot and lowercase
 
 if __name__ == "__main__":
     print(get_file_extension("https://plpython.oss-cn-beijing.aliyuncs.com/test.pdf"))

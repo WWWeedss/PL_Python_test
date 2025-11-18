@@ -11,15 +11,29 @@ conn = psycopg2.connect(
 )
 cur = conn.cursor()
 
-if __name__ == "__main__":
+def process_articles():
     apikey = os.getenv("ZHIPUAI_API_KEY")
-    cur.execute("SELECT py_parse_document(%s, %s, %s);", (
-        "https://plpython.oss-cn-beijing.aliyuncs.com/test.pdf",
-        '{"use_ai_correction": true,'
-        ' "model": "glm-4.5-flash"}',
-        apikey
-    ))
-    print(cur.fetchone())  # 30
+    if not apikey:
+        raise RuntimeError("缺少环境变量 ZHIPUAI_API_KEY")
 
-    cur.close()
-    conn.close()
+    sql = """
+    INSERT INTO article_content (article_id, content)
+    SELECT a.id,
+           py_parse_document(
+               a.article_url,
+               '{"use_ai_correction": true, "model": "glm-4.5-flash"}',
+               %s
+           )::jsonb
+    FROM articles a
+    ORDER BY a.id;
+    """
+    cur.execute(sql, (apikey,))
+    conn.commit()
+
+if __name__ == "__main__":
+    try:
+        process_articles()
+        print("文章内容处理完成。")
+    finally:
+        cur.close()
+        conn.close()
