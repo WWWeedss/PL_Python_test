@@ -15,6 +15,7 @@ def parse_document(path: str, options: dict, apikey: str) -> str:
 
     try:
         use_ai_correction = options.get("use_ai_correction", False)
+        model = options.get("model", "glm-4.5-flash")
 
         # 下载文件
         file_bytes, file_type = get_file(path)
@@ -24,7 +25,7 @@ def parse_document(path: str, options: dict, apikey: str) -> str:
 
         # 如果开启 AI 清洗
         if use_ai_correction:
-            file_dict["content"] = nlp_cleanup(file_dict["content"], apikey)
+            file_dict["content"] = nlp_cleanup(file_dict["content"], apikey, model)
 
         result_dict["metadata"] = file_dict["metadata"]
         result_dict["content"] = file_dict["content"]

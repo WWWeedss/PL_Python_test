@@ -1,8 +1,8 @@
 # PL/Python
 测试自定义 sql 函数
 
-python 版本：3.11.13
-postgresql 版本：16
+python 版本：3.9.13
+postgresql 版本：14.20
 
 1. 修改 postgreSql 相关信息
 2. 执行 function_declaration.py，相关函数会被创建到数据库中

@@ -20,7 +20,7 @@ CREATE_FUNCTION_SQL = f"""
 CREATE OR REPLACE FUNCTION py_parse_document(path text, options text DEFAULT '{{}}', apikey text DEFAULT '')
 RETURNS text
 AS $$
-import sys, json
+import sys
 
 root = r'{PROJECT_ROOT}'
 if root not in sys.path:
@@ -45,7 +45,7 @@ def create_plpython_function():
         with conn.cursor() as cur:
             cur.execute(CREATE_FUNCTION_SQL)
             conn.commit()
-        print("PL/Python 函数 py_add 已创建或更新。")
+        print("PL/Python 函数已创建或更新。")
     finally:
         conn.close()
 

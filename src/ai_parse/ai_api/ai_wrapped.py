@@ -2,10 +2,10 @@ import os
 
 from zai import ZhipuAiClient
 
-def get_response_from_ai(prompt: str, apikey: str) -> str:
+def get_response_from_ai(prompt: str, apikey: str, model:str = "glm-4.5-flash") -> str:
     client = ZhipuAiClient(api_key=apikey)
     response = client.chat.completions.create(
-        model="glm-4.5-flash",
+        model=model,
         messages=[
             {"role": "user", "content": prompt}
         ],
